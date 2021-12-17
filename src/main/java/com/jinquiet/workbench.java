@@ -6,7 +6,7 @@ import java.io.PrintStream;
  * Workbench
  *
  */
-public class workbench {
+public class Workbench {
     public static void main(String[] args) throws InterruptedException {
         PrintStream so = System.out;
 
