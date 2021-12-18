@@ -1,6 +1,8 @@
-package com.jinquiet.validator;
+package com.jinquiet.validator.impl;
 
 import com.jinquiet.exception.ValidationException;
+import com.jinquiet.validator.ValidationResult;
+import com.jinquiet.validator.Validator;
 
 public class IntegerValidator implements Validator<String>{
 

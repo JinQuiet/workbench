@@ -6,12 +6,13 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jinquiet.exception.IntegerValidationException;
-import com.jinquiet.validator.AgeValidator;
-import com.jinquiet.validator.EmailValidator;
-import com.jinquiet.validator.IntegerValidator;
+
 import com.jinquiet.validator.ValidationChain;
 import com.jinquiet.validator.ValidationResult;
 import com.jinquiet.validator.Validator;
+import com.jinquiet.validator.impl.AgeValidator;
+import com.jinquiet.validator.impl.EmailValidator;
+import com.jinquiet.validator.impl.IntegerValidator;
 
 /**
  * Workbench
