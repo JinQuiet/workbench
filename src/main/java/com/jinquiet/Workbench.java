@@ -6,13 +6,14 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jinquiet.exception.IntegerValidationException;
-
+import com.jinquiet.json.Payload;
 import com.jinquiet.validator.ValidationChain;
 import com.jinquiet.validator.ValidationResult;
 import com.jinquiet.validator.Validator;
 import com.jinquiet.validator.impl.AgeValidator;
 import com.jinquiet.validator.impl.EmailValidator;
 import com.jinquiet.validator.impl.IntegerValidator;
+import com.jinquiet.validator.impl.NameValidator;
 
 /**
  * Workbench
@@ -28,11 +29,12 @@ public class Workbench {
         RequestMapping rm = new RequestMapping();
 
         User user = new User();
-            user.setUsername("some Name");
+            user.setUsername("Max");
             user.setUserAge("1000");
-            user.setEmail("@qweqwe.com");
+            user.setEmail("234234 qweqwe.com");
 
-        Validator<String> iv = new IntegerValidator("user.userId");
+        Validator<String> iv = new IntegerValidator("user.id");
+        Validator<String> nv = new NameValidator("user.userName");
         Validator<String> ev = new EmailValidator("user.email");
         Validator<String> av = new AgeValidator("user.userAge");
 
@@ -41,21 +43,14 @@ public class Workbench {
         ValidationResult chainResolutionResult;
 
             chainResolutionResult = vc.nextLink("123", iv)
-                                // .nextLink(user.getUsername(), av)
+                                .nextLink(user.getUsername(), nv)
                                 .nextLink(user.getUserAge(), av)
                                 .nextLink(user.getEmail(), ev)
                                 .resolve();
 
-
             so.println("chainResolution :: " + chainResolutionResult);
 
-
-
-
-            Payload<User> p = new Payload<>();
-
-            p.setPayload(user);
-            p.setErrors(vc.getErrorMessages());
+            Payload<User> p = new Payload<User>(user, vc.getErrorMessages());
 
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -68,25 +63,4 @@ public class Workbench {
 
         so.format("====================end==============%n");
     }
-}
-
-class Payload<T> {
-    private T payload;
-    private Map<String, String> errors;
-
-
-    public T getPayload() {
-        return payload;
-    }
-    public void setPayload(T payload) {
-        this.payload = payload;
-    }
-    public Map<String, String> getErrors() {
-        return errors;
-    }
-    public void setErrors(Map<String, String> errors) {
-        this.errors = errors;
-    }
-
-
 }
