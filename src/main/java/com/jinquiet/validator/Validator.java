@@ -1,5 +1,10 @@
 package com.jinquiet.validator;
 
 public interface Validator<T> {
-    public boolean validate(T t);
+
+    public ValidationResult validate(T t);
+
+    public default String getValidationTarget() {
+        return "Error";
+    }
 }
