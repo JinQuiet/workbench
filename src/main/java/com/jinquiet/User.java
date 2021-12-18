@@ -3,7 +3,7 @@ package com.jinquiet;
 public class User {
 
     private String username;
-    private Integer userAge;
+    private String userAge;
     private String email;
 
     public String getUsername() {
@@ -12,10 +12,10 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-    public Integer getUserAge() {
+    public String getUserAge() {
         return userAge;
     }
-    public void setUserAge(Integer userAge) {
+    public void setUserAge(String userAge) {
         this.userAge = userAge;
     }
     public String getEmail() {

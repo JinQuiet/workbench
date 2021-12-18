@@ -26,36 +26,31 @@ public class Workbench {
 
 
         RequestMapping rm = new RequestMapping();
-        rm.setName("users");
+
+        User user = new User();
+            user.setUsername("some Name");
+            user.setUserAge("1000");
+            user.setEmail("@qweqwe.com");
 
         Validator<String> iv = new IntegerValidator("user.userId");
         Validator<String> ev = new EmailValidator("user.email");
         Validator<String> av = new AgeValidator("user.userAge");
-            
-            ValidationChain<String> vc = new ValidationChain<>();
 
-            ValidationResult chainResolution;
-            String integer = "2";
-            String age = "fd";
-            String email = "@dfg.com";
+        ValidationChain<String> vc = new ValidationChain<>();
 
-            chainResolution = vc.nextLink(integer, iv)
-                                .nextLink(age, av)                             
-                                .nextLink(email, ev)                                                             
-                                .resolve();            
-            /*
-            chainResolution = vc.nextLink((a) -> (Integer.parseInt(s) > 0))
-                                .nextLink(iv, "1")
-                                .nextLink(av, "_")                                
+        ValidationResult chainResolutionResult;
+
+            chainResolutionResult = vc.nextLink("123", iv)
+                                // .nextLink(user.getUsername(), av)
+                                .nextLink(user.getUserAge(), av)
+                                .nextLink(user.getEmail(), ev)
                                 .resolve();
-            */
 
-            so.println("chainResolution :: " + chainResolution);
 
-            User user = new User();
-            user.setUsername("some Name");
-            user.setUserAge(12);
-            user.setEmail("qweqwe@qweqwe.com");
+            so.println("chainResolution :: " + chainResolutionResult);
+
+
+
 
             Payload<User> p = new Payload<>();
 
@@ -69,9 +64,6 @@ public class Workbench {
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
-
-
-
 
 
         so.format("====================end==============%n");
@@ -96,5 +88,5 @@ class Payload<T> {
         this.errors = errors;
     }
 
-    
+
 }
