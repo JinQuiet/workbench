@@ -1,13 +1,12 @@
 package com.jinquiet.validator.impl;
 
-import com.jinquiet.exception.EmailValidationException;
 import com.jinquiet.validator.ValidationResult;
 import com.jinquiet.validator.Validator;
 
 public class EmailValidator implements Validator<String> {
 
 
-    private final String validationTarget;
+    private String validationTarget;
 
     private ValidationResult validationResult;
 
@@ -22,7 +21,7 @@ public class EmailValidator implements Validator<String> {
     private static final 
         String EMAIL_REGEXP = "([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*[.][a-zA-Z]{2,})";
 
-    public ValidationResult validate(String str) throws EmailValidationException {
+    public ValidationResult validate(String str) {
 
         validationResult = ValidationResult.invalid("Wrong Email Format");
 
@@ -34,5 +33,9 @@ public class EmailValidator implements Validator<String> {
 
     public String getValidationTarget() {
         return validationTarget;
+    }    
+
+    public void setValidationTarget(String validationTarget) {
+        this.validationTarget = validationTarget;
     }    
 }

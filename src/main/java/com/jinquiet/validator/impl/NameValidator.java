@@ -4,12 +4,11 @@ import com.jinquiet.validator.ValidationResult;
 import com.jinquiet.validator.Validator;
 
 public class NameValidator implements Validator<String>{
- 
     
     private static final Integer MINIMUM_LENGHT = 1;
     private static final Integer MAXIMUM_LENGTH = 255;
 
-    private final String validationTarget;
+    private String validationTarget;
 
     private ValidationResult validationResult;
 
@@ -33,5 +32,10 @@ public class NameValidator implements Validator<String>{
 
     public String getValidationTarget() {
         return validationTarget;
-    }   
+    }
+
+    public void setValidationTarget(String validationTarget) {
+        this.validationTarget = validationTarget;
+    }
+
 }

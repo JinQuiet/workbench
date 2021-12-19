@@ -1,4 +1,4 @@
-package com.jinquiet.requestmapping;
+package com.jinquiet.web.mapping;
 
 import java.net.http.HttpRequest;
 

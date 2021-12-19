@@ -1,6 +1,5 @@
 package com.jinquiet.validator.impl;
 
-import com.jinquiet.exception.EmailValidationException;
 import com.jinquiet.validator.ValidationResult;
 import com.jinquiet.validator.Validator;
 
@@ -14,7 +13,7 @@ public class AgeValidator implements Validator<String> {
     */
     private static final Integer AGE_UPPER_LIMIT = 969;
 
-    private final String validationTarget;
+    private String validationTarget;
 
     private ValidationResult validationResult;
 
@@ -25,7 +24,8 @@ public class AgeValidator implements Validator<String> {
     public AgeValidator(String validationTarget) {
         this.validationTarget = validationTarget;
     }   
-    public ValidationResult validate(String str) throws EmailValidationException {
+    
+    public ValidationResult validate(String str) {
 
         validationResult = ValidationResult.invalid("Impossible Age Provided");
 
@@ -43,5 +43,9 @@ public class AgeValidator implements Validator<String> {
 
     public String getValidationTarget() {
         return validationTarget;
-    }      
+    }  
+
+    public void setValidationTarget(String validationTarget) {
+        this.validationTarget = validationTarget;
+    }    
 }

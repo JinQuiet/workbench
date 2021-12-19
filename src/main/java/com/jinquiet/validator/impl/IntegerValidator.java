@@ -1,6 +1,5 @@
 package com.jinquiet.validator.impl;
 
-import com.jinquiet.exception.ValidationException;
 import com.jinquiet.validator.ValidationResult;
 import com.jinquiet.validator.Validator;
 
@@ -12,7 +11,7 @@ public class IntegerValidator implements Validator<String>{
      * Used in the building of the "error" object by the Validation Chain
      * before pasiing errorsto the clien side
      */
-    private final String validationTarget;
+    private String validationTarget;
 
     private ValidationResult validationResult;
 
@@ -24,7 +23,7 @@ public class IntegerValidator implements Validator<String>{
         this.validationTarget = validationTarget;
     }
 
-    public ValidationResult validate(String str) throws ValidationException {
+    public ValidationResult validate(String str) {
 
         validationResult = ValidationResult.invalid("Wrong Integer Format");
         try {
@@ -40,4 +39,5 @@ public class IntegerValidator implements Validator<String>{
     public String getValidationTarget() {
         return validationTarget;
     }
+
 }

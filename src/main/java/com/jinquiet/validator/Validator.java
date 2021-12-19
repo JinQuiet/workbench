@@ -5,6 +5,7 @@ public interface Validator<T> {
     public ValidationResult validate(T t);
 
     public default String getValidationTarget() {
-        return "Error";
+        return "error.general";
     }
+
 }
