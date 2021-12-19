@@ -1,8 +1,6 @@
 package com.jinquiet.validator.impl;
 
 import com.jinquiet.validator.ValidationResult;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -14,7 +14,6 @@ import com.jinquiet.validator.impl.EmailValidator;
 import com.jinquiet.validator.impl.IntegerValidator;
 import com.jinquiet.validator.impl.NameValidator;
 import com.jinquiet.web.mapping.RequestMapping;
-import com.jinquiet.web.util.PathPattern;
 import com.jinquiet.web.util.RequestUtil;
 
 /**
@@ -82,7 +81,7 @@ public class Workbench {
         String cleanPath = RequestUtil.getCleanPath(reqGetPathInfoSlash);
         so.println(cleanPath);
         
-        String regexPath = RequestUtil.patternToRegex(PathPattern.getPathParameterToRegexMapping(), cleanPath);
+        //String regexPath = RequestUtil.patternToRegex(PathPattern.getPathParameterToRegexMapping(), cleanPath);
         
 
         //ValidationChain vcPath = new  ValidationChain<String>().nextLink(cleanPath, );
