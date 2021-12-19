@@ -16,7 +16,6 @@ public class ValidationResult {
 
     public static ValidationResult invalid(String errorMessage) {
         return new ValidationResult(false, errorMessage);
-
     }
 
     public boolean notValid(){
@@ -30,7 +29,5 @@ public class ValidationResult {
     public String getErrorMessage() {
         return errorMessage;
     }
-
-    
 
 }

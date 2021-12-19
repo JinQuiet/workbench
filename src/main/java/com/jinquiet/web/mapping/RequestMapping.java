@@ -1,26 +1,17 @@
 package com.jinquiet.web.mapping;
 
+import java.util.Arrays;
+
 public class RequestMapping {
 
 /*
-
-request.getServerPath() - путь запроса (эндпоинт)
-request.getMethod() - метод
-
-1. перехват входящего запроса в методе doFilter(request, response)
-2. чистка строки ввода.
-
-RequestPool
-
-mappingExists(HttpRequest request)
-
 ===========================эндпоинты===========================
 
-    =======0001
+    =======0001 - вернуть всех пользователей
     /users
-    GET - извлечение всех пользователей
+    GET 
 
-    =======0002  - открыть редактор нового пользователя
+    =======0002  - создать нового пользователя
     /users
     POST
 
@@ -43,44 +34,61 @@ mappingExists(HttpRequest request)
 ========эндпоинты=======
 */
 
-/*
-    private String[] consumes;
-    private String[] headers;
-    private RequestMethod[] method;
-    private String name;
-    private String[] params;
-    private String[] path;
-    private String[] produces;
-    private String[] value;
-*/
     //name of the action bound to the mapping
     private String actionName;
     //path passed to the servlet. We have only 1 servlet. So it's just "path"
     private String path;
-    private String pathRegex;
+    //path passed to the servlet. We have only 1 servlet. So it's just "path"
+    private String requestMethod;
+    //application/json should work
+    private String contentType;
+    //pfth parameter like %integer% part in /users/%integer%
+    private String[] pathParameters;
 
-    
     public String getActionName() {
         return actionName;
     }
+
     public void setActionName(String actionName) {
         this.actionName = actionName;
     }
+
     public String getPath() {
         return path;
     }
+
     public void setPath(String path) {
         this.path = path;
     }
-    public String getPathRegex() {
-        return pathRegex;
+
+    public String getRequestMethod() {
+        return requestMethod;
     }
-    public void setPathRegex(String pathRegex) {
-        this.pathRegex = pathRegex;
+
+    public void setRequestMethod(String requestMethod) {
+        this.requestMethod = requestMethod;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String[] getPathParameters() {
+        return pathParameters;
+    }
+
+    public void setPathParameters(String[] pathParameters) {
+        this.pathParameters = pathParameters;
     }
 
     @Override
     public String toString() {
-        return "RequestMapping [actionName=" + actionName + ", path=" + path + ", pathRegex=" + pathRegex + "]";
+        return "RequestMapping [actionName=" + actionName + ", contentType=" + contentType + ", path=" + path
+                + ", pathParameters=" + Arrays.toString(pathParameters) + ", requestMethod=" + requestMethod + "]";
     }
+   
 }

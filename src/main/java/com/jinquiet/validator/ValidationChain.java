@@ -18,14 +18,15 @@ public class ValidationChain<T> {
 
         public ValidationChain<T> nextLink(T value, Validator<T> validator) {
             validationChainResult = ValidationResult.valid();
-            
+
             //invoke validator on the value (Integer Validator in the String value, etc)
             ValidationResult validationResult = validator.validate(value);
             if (validationResult.notValid()) {
 
-                validationChainResult = 
-                ValidationResult.invalid("An Error has occuredin the validation chain.");
+                validationChainResult =
+                ValidationResult.invalid("An Error has occured in the validation chain.");
 
+                //store value in the errorMessages map
                 errorMessages.put(validator.getValidationTarget(), validationResult.getErrorMessage());
             }
 

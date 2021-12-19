@@ -16,7 +16,7 @@ public class IntegerValidator implements Validator<String>{
     private ValidationResult validationResult;
 
     public IntegerValidator() {
-        this.validationTarget = "Error";
+        this.validationTarget = "error.integer";
     }
 
     public IntegerValidator(String validationTarget) {

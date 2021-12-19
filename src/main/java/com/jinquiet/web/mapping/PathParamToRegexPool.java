@@ -1,11 +1,9 @@
-package com.jinquiet.web.util;
+package com.jinquiet.web.mapping;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PathPattern {
-    public static final String STR_START = "^";
-    public static final String STR_END = "$";
+public class PathParamToRegexPool {
 
     private static Map<String, String> pathParameterToRegexMapping = new HashMap<>();
 
@@ -15,7 +13,7 @@ public class PathPattern {
         pathParameterToRegexMapping.put("%string%", "[a-z]*");
     }
 
-    public static Map<String, String> getPathParameterToRegexMapping() {
+    public static Map<String, String> getPathParamToRegexMapping() {
         return pathParameterToRegexMapping;
     }
 }

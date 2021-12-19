@@ -11,7 +11,7 @@ public class EmailValidator implements Validator<String> {
     private ValidationResult validationResult;
 
     public EmailValidator() {
-        this.validationTarget = "Error";
+        this.validationTarget = "error.email";
     }
 
     public EmailValidator(String validationTarget) {
@@ -35,7 +35,4 @@ public class EmailValidator implements Validator<String> {
         return validationTarget;
     }    
 
-    public void setValidationTarget(String validationTarget) {
-        this.validationTarget = validationTarget;
-    }    
 }

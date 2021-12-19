@@ -1,6 +1,8 @@
 package com.jinquiet;
 
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,14 +15,21 @@ import com.jinquiet.validator.impl.AgeValidator;
 import com.jinquiet.validator.impl.EmailValidator;
 import com.jinquiet.validator.impl.IntegerValidator;
 import com.jinquiet.validator.impl.NameValidator;
+import com.jinquiet.validator.impl.web.PathValidator;
+import com.jinquiet.validator.impl.web.RequestMethodValidator;
+import com.jinquiet.web.mapping.PathParamToRegexPool;
 import com.jinquiet.web.mapping.RequestMapping;
-import com.jinquiet.web.util.RequestUtil;
+import com.jinquiet.web.mapping.RequestMappingPool;
+import static com.jinquiet.web.util.WebUtils.*;
 
 /**
  * Workbench
  *
  */
 public class Workbench {
+
+    static String pathInfo;
+    static String requestMethod;
     public static void main(String[] args) throws InterruptedException, IntegerValidationException {
         PrintStream so = System.out;
 
@@ -63,31 +72,47 @@ public class Workbench {
 
         so.format("====================Request Mapping Test==============%n");
 
-        String reqGetPathInfo = "/users";
-        String reqGetPathInfoSlash = "/users/";
-        
-        
-        RequestMapping requestMapping = new RequestMapping();
-        requestMapping.setActionName("users.getAll");
-        requestMapping.setPath(reqGetPathInfo); //I clean path here automatically
-        requestMapping.setPathRegex(reqGetPathInfo); //regex should generate automatically
+        pathInfo = "/users/123/test/223424/vfvfv/34";
+        requestMethod = "GET";
 
-        so.println(requestMapping);
+        pathInfo = getCleanPath(pathInfo);
 
-        //take dirty path --- reqGetPathInfoSlash
+        ValidationChain<String> pathValidationChain = new ValidationChain<>();
 
-        //Clean it
-        so.println(reqGetPathInfoSlash);
-        String cleanPath = RequestUtil.getCleanPath(reqGetPathInfoSlash);
-        so.println(cleanPath);
-        
-        //String regexPath = RequestUtil.patternToRegex(PathPattern.getPathParameterToRegexMapping(), cleanPath);
-        
+            Validator<String> pv = new PathValidator("request.path", RequestMappingPool.getRequestMapping());
+                pathValidationChain.nextLink(pathInfo, pv);
+                    List<RequestMapping> pathMapping 
+                    = getMappingForRequestPart(RequestMappingPool.getRequestMapping(), 
+                    pathInfo,
+                    (rm) -> pathInfo.matches(pathParamToRegex(PathParamToRegexPool.getPathParamToRegexMapping(), rm.getPath())));
 
-        //ValidationChain vcPath = new  ValidationChain<String>().nextLink(cleanPath, );
+            Validator<String> requestMethodValidator = new RequestMethodValidator("request.method", pathMapping);
+                pathValidationChain.nextLink(requestMethod, requestMethodValidator);
+                    pathMapping
+                    = getMappingForRequestPart(pathMapping, 
+                    requestMethod,
+                    (rm) -> requestMethod.equals(rm.getRequestMethod()));
 
-        //so.println(vcPath.resolve().getErrorMessage());
+
+        ValidationResult prr = pathValidationChain.resolve();
+            
+
+        Payload<User> plu = new Payload<User>(user, pathValidationChain.getErrorMessages());
+        so.println("chainResolution :: " + prr.isValid());
+        so.println("chainErrors :: " + pathValidationChain.getErrorMessages());
+
+        try {
+            String json = mapper.writeValueAsString(plu);
+            so.println("ResultingJSONstring = " + json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
         so.format("====================Request Mapping Test END==============%n");
+
+        so.format("====================Request-Tokenizer==============%n");        
+
+        Arrays.stream(tokenizePath(pathInfo)).forEach(so::println);
 
     }
 }

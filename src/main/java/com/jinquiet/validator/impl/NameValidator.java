@@ -13,7 +13,7 @@ public class NameValidator implements Validator<String>{
     private ValidationResult validationResult;
 
     public NameValidator() {
-        this.validationTarget = "Error";
+        this.validationTarget = "error.name";
     }
 
     public NameValidator(String validationTarget) {
@@ -32,10 +32,6 @@ public class NameValidator implements Validator<String>{
 
     public String getValidationTarget() {
         return validationTarget;
-    }
-
-    public void setValidationTarget(String validationTarget) {
-        this.validationTarget = validationTarget;
     }
 
 }

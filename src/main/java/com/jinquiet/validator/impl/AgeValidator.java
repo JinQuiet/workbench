@@ -18,7 +18,7 @@ public class AgeValidator implements Validator<String> {
     private ValidationResult validationResult;
 
     public AgeValidator() {
-        this.validationTarget = "Error";
+        this.validationTarget = "error.age";
     }
 
     public AgeValidator(String validationTarget) {
@@ -44,8 +44,5 @@ public class AgeValidator implements Validator<String> {
     public String getValidationTarget() {
         return validationTarget;
     }  
-
-    public void setValidationTarget(String validationTarget) {
-        this.validationTarget = validationTarget;
-    }    
+ 
 }
