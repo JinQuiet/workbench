@@ -36,4 +36,8 @@ public class LoggerWrapper {
         logger.addHandler(consoleHandler);
         return logger;
     }
+
+    public static <T> Logger getLogger(Class<T> clazz) {
+        return getLogger(clazz.getName());
+    }    
 }

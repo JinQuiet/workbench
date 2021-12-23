@@ -9,10 +9,9 @@ import com.jinquiet.logger.LoggerWrapper;
  *
  */
 public class Workbench {
-    private final static Logger logger = LoggerWrapper.getLogger(Workbench.class.getName());
+    private final static Logger logger = LoggerWrapper.getLogger(Workbench.class);
 
     public static void main(String[] args) throws InterruptedException {
         logger.info("It's working");
     }
 }
-
