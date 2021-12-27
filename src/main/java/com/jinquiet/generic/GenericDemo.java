@@ -11,7 +11,6 @@ import com.jinquiet.animal.DomesticCat;
 import com.jinquiet.animal.SiameseCat;
 import com.jinquiet.animal.WildCat;
 import com.jinquiet.animal.Wolf;
-import com.jinquiet.genericclass.OneAnimalShelter;
 import com.jinquiet.logger.LoggerWrapper;
 
 public class GenericDemo {
@@ -68,7 +67,6 @@ public class GenericDemo {
         //here we've hit the BOUND (code below doesn't work)
         //consumeAddAnimal(catDomesticList);
         //consumeAddAnimal(catSiameseList);
-
     }
 
 
@@ -110,6 +108,7 @@ public class GenericDemo {
         //Cat cat = animals.get(0);
 
         //It is possible to READ elements from this list into Object
+        //Since this is the feature of Type Erasure
         //Object obj = animals.get(0);
 
         return animals;
