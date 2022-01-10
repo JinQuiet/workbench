@@ -5,10 +5,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.xml.crypto.Data;
 
 import com.jinquiet.logger.LoggerWrapper;
 
@@ -34,7 +37,9 @@ public class StreamTest {
             System.out.println();
 
         //making intermediary array
-        Stream<Integer> streamOfIntegers = Arrays.stream(DataSource.getIntegerUnsortedArray());
+
+        Integer[] integerArray = DataSource.getIntegerUnsortedArray();
+        Stream<Integer> streamOfIntegers = Arrays.stream(integerArray);
             logger.info(streamOfIntegers.toString());
             streamOfIntegers.forEach((val) -> System.out.print(String.valueOf(val) + ", "));
             System.out.println();
@@ -45,27 +50,74 @@ public class StreamTest {
 
         logger.info("====================================");
 
-        DataSource.getPeopleList()
-                                .stream()
-                                .map((e) -> e.getInterests())
-                                .flatMap((val) -> Arrays.stream(val))
-                                .sorted(Comparator.reverseOrder())
-                                .distinct()
-                                .collect(Collectors.toList())
-                                .forEach((System.out::println));
+        List<Person> people = DataSource.getPeopleList();
 
+        people
+            .stream()
+            .map((e) -> e.getInterests())
+            .flatMap((val) -> Arrays.stream(val))
+            .sorted(Comparator.reverseOrder())
+            .distinct()
+            .collect(Collectors.toList())
+            .forEach((System.out::println));
+
+            Comparator<String> cmp = Comparator.comparingInt(String::length)
+            .thenComparing(String.CASE_INSENSITIVE_ORDER);
+
+        //Find all people with the name Max and sort them by the number ot their interests
+        //with interests sorted in the alphabetical order
+        List<Person> peopleOne = 
+            people
+            .stream()
+            .filter(e -> e.getName().equals("Max"))
+            .sorted(Comparator.comparingInt(p -> p.getInterests().length))
+            .collect(Collectors.toList());
+
+
+        peopleOne
+            .stream()
+            .forEach(e -> Arrays.sort(e.getInterests()));
+        
+            peopleOne.stream().forEach(System.out::println);
+    }
+}
+
+
+class Pair {
+    private String one;
+    private String two;
+
+    public Pair(String one, String two) {
+        this.one = one;
+        this.two = two;
+    }
+
+    public String getOne() {
+        return one;
+    }
+
+    public void setOne(String one) {
+        this.one = one;
+    }
+
+    public String getTwo() {
+        return two;
+    }
+
+    public void setTwo(String two) {
+        this.two = two;
     }
 }
 
 class DataSource {
     public static List<Person> getPeopleList() {
         Person person01 = new Person("Max", 30, new String[]{"Books", "Dogs"});
-        Person person02 = new Person("Max", 19, new String[]{"Music", "Cats", "Art"});
-        Person person03 = new Person("Max", 41, new String[]{"Cooking", "Electronics", "Knifes"});
-        Person person04 = new Person("Max", 34, new String[]{"Books", "Design"});
-        Person person05 = new Person("Max", 26, new String[]{"Books", "Gaming"});
+        Person person02 = new Person("Ted", 19, new String[]{"Music", "Cats", "Art"});
+        Person person03 = new Person("Leo", 41, new String[]{"Cooking", "Electronics", "Knifes"});
+        Person person04 = new Person("Max", 34, new String[]{"Books"});
+        Person person05 = new Person("Don", 26, new String[]{"Books", "Gaming"});
         Person person06 = new Person("Max", 24, new String[]{"Manga", "Anime", "Gaming"});
-        Person person07 = new Person("Max", 29, new String[]{"Comix", "Manga", "Art"});
+        Person person07 = new Person("Tor", 29, new String[]{"Comix", "Manga", "Art"});
 
         List<Person> people = new ArrayList<>();
         people.add(person01);
