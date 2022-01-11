@@ -3,6 +3,7 @@ package com.jinquiet;
 import java.util.logging.Logger;
 
 import com.jinquiet.logger.LoggerWrapper;
+import com.jinquiet.stream.JavaRushStreamTutorial;
 import com.jinquiet.stream.StreamTest;
 
 /**
@@ -14,8 +15,12 @@ public class Workbench {
 
     public static void main(String[] args) throws InterruptedException {
         logger.info("It's working");
+        //new StreamTest().go();
 
-        new StreamTest().go();
-
+        //Examples from Javarush
+        new JavaRushStreamTutorial().go();
+        
+        //Random Stream Training
+        //new JavaRushStreamTutorial().randomTryouts01();
     }
 }
