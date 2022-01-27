@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import javax.xml.crypto.Data;
 
 import com.jinquiet.logger.LoggerWrapper;
+import com.jinquiet.stream.entity.Person;
 
 public class StreamTest {
     private final static Logger logger = LoggerWrapper.getLogger(StreamTest.class);
@@ -37,13 +38,13 @@ public class StreamTest {
             System.out.println();
 
         //making intermediary array
-
         Integer[] integerArray = DataSource.getIntegerUnsortedArray();
         Stream<Integer> streamOfIntegers = Arrays.stream(integerArray);
             logger.info(streamOfIntegers.toString());
             streamOfIntegers.forEach((val) -> System.out.print(String.valueOf(val) + ", "));
             System.out.println();
 
+            
         List<String[]> mapTest = DataSource.getPeopleList().stream().map(Person::getInterests).collect(Collectors.toList());
 
         mapTest.forEach((val) -> Arrays.stream(val).forEach(System.out::println));
@@ -82,33 +83,6 @@ public class StreamTest {
     }
 }
 
-
-class Pair {
-    private String one;
-    private String two;
-
-    public Pair(String one, String two) {
-        this.one = one;
-        this.two = two;
-    }
-
-    public String getOne() {
-        return one;
-    }
-
-    public void setOne(String one) {
-        this.one = one;
-    }
-
-    public String getTwo() {
-        return two;
-    }
-
-    public void setTwo(String two) {
-        this.two = two;
-    }
-}
-
 class DataSource {
     public static List<Person> getPeopleList() {
         Person person01 = new Person("Max", 30, new String[]{"Books", "Dogs"});
@@ -141,40 +115,3 @@ class DataSource {
     }
 
 }
-
-class Person {
-    private String name;
-    private Integer age;
-    private String[] interests;
-
-    public Person(String name, Integer age, String[] interests) {
-        this.name = name;
-        this.age = age;
-        this.interests = interests;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public Integer getAge() {
-        return age;
-    }
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-    public String[] getInterests() {
-        return interests;
-    }
-    public void setInterests(String[] interests) {
-        this.interests = interests;
-    }
-
-    @Override
-    public String toString() {
-        return "Person [age=" + age + ", interests=" + Arrays.toString(interests) + ", name=" + name + "]";
-    }
-}
-

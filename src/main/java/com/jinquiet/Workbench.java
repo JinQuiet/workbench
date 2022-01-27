@@ -10,6 +10,7 @@ import com.jinquiet.game.RpsGameService;
 import com.jinquiet.game.gamerules.Rps;
 import com.jinquiet.game.model.RpsGameModel;
 import com.jinquiet.logger.LoggerWrapper;
+import com.jinquiet.stream.JavaRushStreamTutorial;
 import com.jinquiet.stream.StreamTest;
 
 /**
@@ -22,6 +23,7 @@ public class Workbench {
 
     public static void main(String[] args) throws InterruptedException {
         logger.info("It's working");
+        //new StreamTest().go();
 
         /*
         public class RpsGameModel {
