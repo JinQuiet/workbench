@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class Workbench {
+
     private final static Logger logger = LoggerWrapper.getLogger(Workbench.class);
 
     public static void main(String[] args) throws InterruptedException {
@@ -18,7 +19,12 @@ public class Workbench {
         ClassPathXmlApplicationContext context =
                     new ClassPathXmlApplicationContext("context.xml");
 
-        context.getBean(TerminatorQuoter.class).sayQuote();
+        while (true) {
+            Thread.sleep(1000);
+
+             context.getBean(Quoter.class).sayQuote();
+        }
+
 
     }
 }
