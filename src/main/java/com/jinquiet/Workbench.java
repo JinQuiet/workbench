@@ -18,6 +18,10 @@ public class Workbench {
 
         ClassPathXmlApplicationContext context =
                     new ClassPathXmlApplicationContext("context.xml");
-//        context.getBean(Quoter.class).sayQuote();
+        String s = context.getBean(MySpringBean.class).getMessage();
+
+        System.out.println(s);
+
+        context.close();
     }
 }

@@ -12,13 +12,13 @@ import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfingHandlerBeanPostProcessor implements BeanPostProcessor {
+public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
 
     private Map<String, Class> map = new HashMap<>();
 
     private ProfilingController controller = new ProfilingController();
 
-    public ProfingHandlerBeanPostProcessor() throws Exception {
+    public ProfilingHandlerBeanPostProcessor() throws Exception {
         MBeanServer platformMBeanServer = ManagementFactory.getPlatformMBeanServer();
         platformMBeanServer.registerMBean(controller, new ObjectName("profiling", "name", "controller"));
 
