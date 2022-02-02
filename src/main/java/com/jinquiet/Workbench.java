@@ -18,13 +18,6 @@ public class Workbench {
 
         ClassPathXmlApplicationContext context =
                     new ClassPathXmlApplicationContext("context.xml");
-
-        while (true) {
-            Thread.sleep(1000);
-
-             context.getBean(Quoter.class).sayQuote();
-        }
-
-
+//        context.getBean(Quoter.class).sayQuote();
     }
 }
