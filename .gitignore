@@ -3,6 +3,7 @@
 .settings
 .project
 .sts4-cache
+.idea
 
 *.iml
 .classpath
