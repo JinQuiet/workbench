@@ -19,16 +19,4 @@
         <property name="message" value="I'll be back"/>
     </bean>
 
-
-    <bean class="com.jinquiet.MySpringBeanPostProcessor"/>
-
-    <bean class="com.jinquiet.MySpringBean"
-          id="mySpringBean"
-          init-method="initMethod"
-          destroy-method="destroyMethod">
-    </bean>
-
-
-
-
 </beans>

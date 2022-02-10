@@ -8,6 +8,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Workbench
  *
+ * Code made from the lecture
+ * Евгений Борисов — Spring-потрошитель, часть 1
+ *  * Jul 3, 2014
+ *
+ * https://www.youtube.com/watch?v=BmBr5diz8WA
+ *
  */
 public class Workbench {
 
@@ -18,9 +24,6 @@ public class Workbench {
 
         ClassPathXmlApplicationContext context =
                     new ClassPathXmlApplicationContext("context.xml");
-        String s = context.getBean(MySpringBean.class).getMessage();
-
-        System.out.println(s);
 
         context.close();
     }
