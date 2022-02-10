@@ -8,6 +8,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Workbench
  *
+ * Code was taken from here
+ *
+ * Hooking Into the Spring Bean Lifecycle
+ *
+ * Yavuz Tas
+ * August 11, 2020
+ *
+ * https://reflectoring.io/spring-bean-lifecycle/
  */
 public class Workbench {
 
@@ -20,7 +28,7 @@ public class Workbench {
                     new ClassPathXmlApplicationContext("context.xml");
         String s = context.getBean(MySpringBean.class).getMessage();
 
-        System.out.println(s);
+        System.out.println("MySpringBean's toString ::" + s);
 
         context.close();
     }

@@ -48,7 +48,7 @@ public class MySpringBean implements BeanNameAware, ApplicationContextAware, Ini
 
     @PreDestroy
     public void preDestroy() {
-        System.out.println("======= [08] === preDestroy executed =======");
+        System.out.println("======= [08] === @preDestroy executed =======");
     }
 
     @Override

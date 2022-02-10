@@ -11,24 +11,13 @@
 <!--    <context:annotation-config/>-->
 <!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 
-    <bean class="com.jinquiet.PostProxyInvokerContextListener"/>
-    <bean class="com.jinquiet.ProfilingHandlerBeanPostProcessor"/>
-    <bean class="com.jinquiet.InjectRandomIntAnnotationBeanPostProcessor"/>
-
-    <bean class="com.jinquiet.TerminatorQuoter" id="terminatorQuoter">
-        <property name="message" value="I'll be back"/>
-    </bean>
-
-
     <bean class="com.jinquiet.MySpringBeanPostProcessor"/>
 
     <bean class="com.jinquiet.MySpringBean"
           id="mySpringBean"
           init-method="initMethod"
           destroy-method="destroyMethod">
+        <property name="message" value="message from inside mySpringBean"/>
     </bean>
-
-
-
 
 </beans>
