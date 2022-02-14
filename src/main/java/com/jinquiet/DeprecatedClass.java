@@ -2,9 +2,8 @@ package com.jinquiet;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PostProxy {
-
+public @interface DeprecatedClass {
+    Class<?> newImpl();
 }

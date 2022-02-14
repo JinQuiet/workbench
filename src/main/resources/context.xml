@@ -7,16 +7,21 @@
     	http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.jinquiet.*"/>
-<!--    <context:annotation-config/>-->
-<!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 
+<!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
+<!--    <context:annotation-config/>-->
+    <context:component-scan base-package="com.jinquiet.*"/>
+
+    <bean class="com.jinquiet.DeprecationHandlerBeanFactoryPostProcessor"/>
     <bean class="com.jinquiet.PostProxyInvokerContextListener"/>
     <bean class="com.jinquiet.ProfilingHandlerBeanPostProcessor"/>
     <bean class="com.jinquiet.InjectRandomIntAnnotationBeanPostProcessor"/>
 
-    <bean class="com.jinquiet.TerminatorQuoter" id="terminatorQuoter">
+    <bean class="com.jinquiet.TerminatorQuoter"
+          init-method=""
+          id="terminatorQuoter">
         <property name="message" value="I'll be back"/>
     </bean>
+
 
 </beans>
